@@ -1,0 +1,41 @@
+#!/bin/bash
+
+#Copy this beauty to /usr/local/bin
+#export your AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KE TFSTATE_BUCKET
+
+case $1 in
+"up"*)
+  echo "Creating Terraboard network..."
+  docker network create terranet
+  echo "Starting Terraboard containers..."
+  docker run --name db \
+    -e POSTGRESQL_USERNAME=gorm \
+    -e POSTGRESQL_DATABASE=gorm \
+    -e POSTGRESQL_PASSWORD="supersecret" \
+    -p 5432:5432 -d \
+    --net terranet \
+    bitnami/postgresql:latest
+  sleep 10 
+  docker run --name terraboard -p 8080:8080 \
+    -e AWS_REGION="eu-central-1" \
+    -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
+    -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
+    -e AWS_BUCKET="${TFSTATE_BUCKET}" \
+    -e DB_PASSWORD="supersecret" \
+    -e DB_SSLMODE="disable" \
+    --net terranet \
+    -d \
+    camptocamp/terraboard:latest
+  ;;
+"down"*)
+  echo "Stopping terraboard containers..."
+  docker stop db terraboard
+  echo "Deleting terraboard containers..."
+  docker rm db terraboard
+  echo "Removing network..."
+  docker network remove terranet
+  ;;
+*)
+  echo "Usage: terraboard [up|down]"
+  ;;
+esac 
