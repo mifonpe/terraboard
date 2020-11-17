@@ -1,6 +1,6 @@
 # Terraboard🌍⚙️
 
-Simple script to test Terraboard locally [terraboard](https://github.com/camptocamp/terraboard)
+Simple script to test [Terraboard](https://github.com/camptocamp/terraboard) locally.
 
 ## Installing it
 
