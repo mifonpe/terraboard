@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Copy this beauty to /usr/local/bin
-#export your AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KE TFSTATE_BUCKET
+#export your AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION TFSTATE_BUCKET
 
 case $1 in
 "up"*)
@@ -17,7 +17,7 @@ case $1 in
     bitnami/postgresql:latest
   sleep 10 
   docker run --name terraboard -p 8080:8080 \
-    -e AWS_REGION="eu-central-1" \
+    -e AWS_REGION="${AWS_REGION}" \
     -e AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}" \
     -e AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}" \
     -e AWS_BUCKET="${TFSTATE_BUCKET}" \

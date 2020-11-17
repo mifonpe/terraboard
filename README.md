@@ -15,6 +15,7 @@ mv terraboard /usr/local/bin
 ```bash
 export AWS_ACCESS_KEY_ID=<your-key>
 export AWS_SECRET_ACCESS_KEY=<your-secret-key>
+export AWS_REGION=<your-region>
 export TFSTATE_BUCKET=<your-bucket>
 terraboard up
 ```
