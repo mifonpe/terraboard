@@ -6,6 +6,7 @@ Simple script to test Terraboard locally [terraboard](https://github.com/camptoc
 
 ```bash
 curl -fsSL -o terraboard https://raw.githubusercontent.com/mifonpe/terraboard/main/terraboard
+chmod 700 terraboard
 mv terraboard /usr/local/bin
 ```
 
