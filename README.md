@@ -5,7 +5,7 @@ Simple script to test Terraboard locally [terraboard](https://github.com/camptoc
 ## Installing it
 
 ```bash
-curl -o terraboard https://raw.githubusercontent.com/mifonpe/terraboard/main/terraboard
+curl -fsSL -o terraboard https://raw.githubusercontent.com/mifonpe/terraboard/main/terraboard
 mv terraboard /usr/local/bin
 ```
 
