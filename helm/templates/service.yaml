@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: terraboard-service
+  labels:
+    app: terraboard
+spec:
+  selector:
+    app: terraboard
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+

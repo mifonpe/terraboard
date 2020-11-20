@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: terraboard-deployment
+  labels:
+    app: terraboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: terraboard
+  template:
+    metadata:
+      labels:
+        app: terraboard
+    spec:
+      containers:
+      - name: terraboard
+        image: camptocamp/terraboard:latest
+        envFrom:
+        - configMapRef:
+            name: terraboard-cm
+        - secretRef:
+            name: terraboard-secret
+        ports:
+        - containerPort: 8080
+
+
+

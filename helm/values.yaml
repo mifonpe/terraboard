@@ -1,0 +1,12 @@
+
+secrets:
+  aws_key: "aws"
+  aws_secret_key: "aws"
+  db_pass: "dbpass"
+
+backend:
+  region: eu-central-1
+  bucket: tf-state-bucket
+
+ingress:
+  host: "terraboard.local.io"

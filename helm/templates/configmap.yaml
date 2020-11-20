@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: terraboard-cm
+data:
+  AWS_REGION: {{ .Values.backend.region }}
+  AWS_BUCKET: {{ .Values.backend.bucket }}
+  DB_SSLMODE: disable
+  DB_HOST: postgres-service
+  POSTGRESQL_USERNAME: gorm
+  POSTGRESQL_DATABASE: gorm

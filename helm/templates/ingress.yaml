@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: terraboard-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+
+spec:
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - backend:
+          serviceName: terraboard-service 
+          servicePort: 8080
+        path: /

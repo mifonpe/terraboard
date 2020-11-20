@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: bitnami/postgresql:latest
+        envFrom:
+        - configMapRef:
+            name: terraboard-cm
+        - secretRef:
+            name: terraboard-secret
+        ports:
+        - containerPort: 5432
